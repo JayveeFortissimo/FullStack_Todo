@@ -1,5 +1,6 @@
+import CredentialsProvider from "./Provider/CredentialsProvider";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Register from "./Pages/Register";
+import Credentials from "./Pages/Credentials";
 import MainOutlet from "./Pages/MainOutlet";
 
 function App() {
@@ -10,13 +11,21 @@ function App() {
       children: [
         {
           index: true,
-          element: <Register />,
+          element: <Credentials />,
         },
       ],
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+    <CredentialsProvider>
+<RouterProvider router={router} />
+    </CredentialsProvider>
+    
+    </>
+  );
+
 }
 
 export default App;
