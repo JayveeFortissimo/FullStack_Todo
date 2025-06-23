@@ -28,6 +28,7 @@ const CredentialsProvider: React.FC<ChildrenProps> = ({ children }) => {
 
   const pushData = async (e: Event) => {
     e.preventDefault();
+
     try {
       const request = await fetch(`http://localhost:8000/addUser`, {
         method: "post",
