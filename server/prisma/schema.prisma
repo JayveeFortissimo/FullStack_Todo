@@ -23,4 +23,12 @@ model UserProfile {
   address   String
   startDate DateTime
   password  String
+  picture   String  
 }
+
+
+model Todo_title {
+  titleId      Int   @id @default(autoincrement()) 
+  title      String
+}
+
