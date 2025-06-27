@@ -1,6 +1,6 @@
 import type { Props } from "../interface/credentials.interface";
 import { useContext } from "react";
-import { ContextCredentials } from "../Provider/CreateContext";
+import { ContextCredentials } from "../context/CreateContext";
 
 
 const Register: React.FC<Props> = ({ changeCard }) => {
@@ -104,7 +104,9 @@ const Register: React.FC<Props> = ({ changeCard }) => {
         </div>
 
         <div className="mt-10 flex w-[100%] justify-between items-center">
-          <button className="cursor-pointer w-[7rem] h-[2rem] rounded bg-green-400 text-[0.9rem] font-bold">
+          <button 
+          type="submit"
+          className="cursor-pointer w-[7rem] h-[2rem] rounded bg-green-400 text-[0.9rem] font-bold">
             Submit
           </button>
           <p

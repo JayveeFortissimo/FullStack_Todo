@@ -3,6 +3,7 @@ import { ContextCredentials } from "./CreateContext";
 import type { ChildrenProps } from "../interface/children.interfaces";
 import type { user } from "../interface/credentials.interface";
 import toast from "react-hot-toast";
+import type { NavigateFunction } from "react-router-dom";
 
 const CredentialsProvider: React.FC<ChildrenProps> = ({ children }) => {
   const [check, setCheck] = useState<boolean>(false);
@@ -16,7 +17,7 @@ const CredentialsProvider: React.FC<ChildrenProps> = ({ children }) => {
     picture: "",
     confirm: "",
   });
-  console.log(allData);
+
   const getData = (type: string, value: string) => {
     setAlldata((pro) => {
       return {
@@ -26,6 +27,7 @@ const CredentialsProvider: React.FC<ChildrenProps> = ({ children }) => {
     });
   };
 
+  //Register
   const pushData = async (e: Event) => {
     e.preventDefault();
 
@@ -69,9 +71,51 @@ const CredentialsProvider: React.FC<ChildrenProps> = ({ children }) => {
     }
   };
 
+  ////////////////////Login
+  const userLoagin = async (e: Event, redirect:NavigateFunction ) => {
+    e.preventDefault();
+
+    try {
+      const request = await fetch(`http://localhost:8000/userLogin`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+         credentials: 'include',
+        body: JSON.stringify({
+          email: allData.email,
+          password: allData.password
+        }),
+      });
+
+      const data = await request.json();
+
+      if(data.message === 'Invalid Credentials'){
+        toast.error("Invalid Credentials! ");
+        return
+      }else if(data.message === 'Password are not correct! XD'){
+         toast.error("Passwrod are not correct! ");
+        return
+      }
+
+      toast.success("Successfully Login!");
+      setAlldata((pro) => ({
+        ...pro,
+        password:"",
+        email: "",
+      }));
+
+   redirect('content')
+      return request;
+    } catch (error) {
+      console.log("asdadasdasd: ", error);
+      throw error;
+    }
+  };
+
   return (
     <ContextCredentials.Provider
-      value={{ allData, getData, setCheck, check, pushData }}
+      value={{ allData, getData, setCheck, check, pushData, userLoagin }}
     >
       {children}
     </ContextCredentials.Provider>
