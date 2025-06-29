@@ -22,7 +22,7 @@ const addUser: RequestHandler = async (req: Request, res: Response) => {
   try {
     const findSomeone = await prismaConnection.userProfile.findMany();
 
-    const isExist = findSomeone.some((pro) => pro.name === name);
+    const isExist = findSomeone.some((pro: any) => pro.name === name);
 
     if (isExist) {
       res.json({ message: "User already Exists" });
