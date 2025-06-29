@@ -25,7 +25,6 @@ const ContentBar = () => {
 
       <div className="mt-10 h-[4rem] flex justify-center items-center p-5">
         <button className="shadow-2xl w-[100%] h-[2rem] rounded cursor-pointer bg-stone-600 hover:bg-amber-500 text-white flex justify-center items-center ">
-          
           <LogOut />
         </button>
       </div>
