@@ -2,7 +2,6 @@
 
 const ContentContain = () => {
     
-
   return (
     <div className="w-[100%] min-h-[100%]">
 {/* Header */}

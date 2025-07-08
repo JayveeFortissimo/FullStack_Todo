@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { ContextCredentials } from "./CreateContext";
 import type { ChildrenProps } from "../interface/children.interfaces";
-import type { user } from "../interface/credentials.interface";
+import type { User } from "../interface/credentials.interface";
 import toast from "react-hot-toast";
 import type { NavigateFunction } from "react-router-dom";
 
 const CredentialsProvider: React.FC<ChildrenProps> = ({ children }) => {
   const [check, setCheck] = useState<boolean>(false);
-  const [allData, setAlldata] = useState<user>({
+  const [allData, setAlldata] = useState<User>({
     name: "",
     email: "",
     age: "",
@@ -28,7 +28,7 @@ const CredentialsProvider: React.FC<ChildrenProps> = ({ children }) => {
   };
 
   //Register
-  const pushData = async (e: Event) => {
+  const pushData = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
@@ -71,8 +71,8 @@ const CredentialsProvider: React.FC<ChildrenProps> = ({ children }) => {
     }
   };
 
-  ////////////////////Login
-  const userLoagin = async (e: Event, redirect:NavigateFunction ) => {
+
+  const userLogin = async (e: React.FormEvent, redirect: NavigateFunction ) => {
     e.preventDefault();
 
     try {
@@ -115,7 +115,7 @@ const CredentialsProvider: React.FC<ChildrenProps> = ({ children }) => {
 
   return (
     <ContextCredentials.Provider
-      value={{ allData, getData, setCheck, check, pushData, userLoagin }}
+      value={{ allData, getData, setCheck, check, pushData, userLogin }}
     >
       {children}
     </ContextCredentials.Provider>

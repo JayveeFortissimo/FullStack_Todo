@@ -1,4 +1,5 @@
 import CredentialsProvider from "./context/CredentialsProvider";
+import ContentProvider from "./context/ContentProvider";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Credentials from "./Pages/Credentials";
 import MainOutlet from "./Pages/MainOutlet";
@@ -15,22 +16,22 @@ function App() {
           element: <Credentials />,
         },
         {
-          path:'content',
-          element:<MainContent/>
-        }
+          path: "content",
+          element: <MainContent />,
+        },
       ],
     },
   ]);
 
   return (
     <>
-    <CredentialsProvider>
-<RouterProvider router={router} />
-    </CredentialsProvider>
-    
+      <ContentProvider>
+        <CredentialsProvider>
+          <RouterProvider router={router} />
+        </CredentialsProvider>
+      </ContentProvider>
     </>
   );
-
 }
 
 export default App;
