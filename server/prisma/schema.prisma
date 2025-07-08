@@ -30,5 +30,8 @@ model UserProfile {
 model Todo_title {
   titleId      Int   @id @default(autoincrement()) 
   title      String
+  description String
+  startDate DateTime
 }
+
 

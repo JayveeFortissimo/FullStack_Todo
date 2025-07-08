@@ -8,7 +8,7 @@ const login: RequestHandler = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
     const user = await prismaConnection.userProfile.findUnique({
-      where: {email},
+      where: { email },
     });
 
     if (!user) {
@@ -20,17 +20,31 @@ const login: RequestHandler = async (req: Request, res: Response) => {
 
     if (!passwordMatched) {
       res.json({ message: "Password are not correct! XD" });
-      return
+      return;
     }
 
     const token = generateToken(user.id);
 
-    res.cookie("TokenJV", token, { httpOnly: true, secure: false});
+    res.cookie("TokenJV", token, { httpOnly: true, secure: false });
     res.status(200).json({ message: "Login Successfully", token: token });
   } catch (error) {
-     res.status(500).json({ message: "Error login user", error });
+    res.status(500).json({ message: "Error login user", error });
     console.log(error);
   }
 };
 
-export default login;
+const getProfile: RequestHandler = async (req: Request, res: Response) => {
+  const userId = req.user as { id: number };
+
+  try {
+    const userProfile = await prismaConnection.userProfile.findUnique({
+      where: { id: userId.id },
+    });
+
+    res.status(200).json({ profile: userProfile });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { login, getProfile };
