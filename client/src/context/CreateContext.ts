@@ -36,11 +36,12 @@ const contextContent = createContext<ContentMain>({
   },
 
   create: async(_e: React.FormEvent) =>{  throw new Error("Create Title Successfully!!")},
-  userProfile: [{
+  userProfile: {
     id: 0,
     name:'',
     address:''
-  }]
+  },
+  allDataSide:[]
 });
 
 export { ContextCredentials, contextContent };

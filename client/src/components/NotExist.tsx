@@ -3,7 +3,7 @@ import { Pen } from 'lucide-react';
 import type { State } from '../interface/content.interface';
 
 
-const NoContent: React.FC<State> = ({setBooleans}) => {
+const NotExist: React.FC<State> = ({setBooleans}) => {
 
   return (
     <div className="w-[100%] min-h-[100%] flex justify-center items-center">
@@ -22,4 +22,4 @@ const NoContent: React.FC<State> = ({setBooleans}) => {
   );
 };
 
-export default NoContent;
+export default NotExist;
